@@ -1,17 +1,27 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+// index.js
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+const express = require('express');
+const cors = require('cors');
+const sqlite3 = require('sqlite3').verbose(); 
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+const app = express();
+const PORT = 5000; 
+
+app.use(cors()); 
+app.use(express.json()); 
+
+const db = new sqlite3.Database('./ai_story_db.sqlite', (err) => {
+  if (err) {
+    console.error('Error connecting to database:', err.message);
+  } else {
+    console.log('Connected to the SQLite database.');
+  }
+});
+
+app.get('/', (req, res) => {
+  res.send('AI Story Dashboard Backend is running!');
+});
+
+app.listen(PORT, () => {
+  console.log(`Server is running on http://localhost:${PORT}`);
+});
