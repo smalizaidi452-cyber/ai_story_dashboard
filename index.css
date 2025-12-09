@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Backdrop & subtle moving streak */
+.hero-bg {
+  background: radial-gradient(1200px 600px at 10% 10%, rgba(0,201,255,0.06), transparent 8%),
+              linear-gradient(180deg, #0b0b14 0%, #1a0033 100%);
+}
+
+/* Color beam / streak animation */
+@keyframes beam-move {
+  0%   { transform: translateX(-20%) rotate(0deg); opacity: 0.6; }
+  50%  { transform: translateX(10%) rotate(2deg); opacity: 1; }
+  100% { transform: translateX(-20%) rotate(0deg); opacity: 0.6; }
+}
+
+.color-beam {
+  animation: beam-move 6s linear infinite;
+  filter: blur(18px);
+  mix-blend-mode: screen;
+}
+
+/* soft glow on cards */
+.glow-card {
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border: 1px solid rgba(255,255,255,0.04);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 8px 40px rgba(2,6,23,0.6);
+}
+
+/* Button neon hover */
+.btn-neon {
+  background: linear-gradient(90deg, #2C006A, #00C9FF);
+  color: #041026;
+}
+.btn-neon:hover {
+  box-shadow: 0 6px 24px rgba(0,201,255,0.20), 0 0 40px rgba(199,125,255,0.06);
+  transform: translateY(-2px);
+  transition: all .22s ease;
+}
